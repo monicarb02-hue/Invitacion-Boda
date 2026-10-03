@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Invitación de Boda</title>
+
+https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Montserrat',sans-serif;
+background:#faf7f2;
+color:#4a4a4a;
+text-align:center;
+}
+
+.hero{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+padding:30px;
+background:linear-gradient(rgba(255,255,255,.8),rgba(255,255,255,.8)),
+url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc');
+background-size:cover;
+background-position:center;
+}
+
+.names{
+font-family:'Great Vibes',cursive;
+font-size:70px;
+color:#b48b4d;
+}
+
+.subtitle{
+margin-top:15px;
+font-size:22px;
+}
+
+.date{
+margin-top:25px;
+font-size:24px;
+font-weight:bold;
+}
+
+.section{
+padding:80px 20px;
+}
+
+h2{
+font-family:'Playfair Display',serif;
+font-size:42px;
+margin-bottom:30px;
+color:#b48b4d;
+}
+
+.countdown{
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.box{
+background:white;
+padding:25px;
+border-radius:20px;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+min-width:120px;
+}
+
+.number{
+font-size:45px;
+font-weight:bold;
+color:#b48b4d;
+}
+
+.label{
+font-size:14px;
+margin-top:8px;
+}
+
+.card{
+max-width:700px;
+margin:auto;
+background:white;
+padding:40px;
+border-radius:25px;
+box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.rsvp-buttons{
+margin-top:35px;
+display:flex;
+justify-content:center;
+gap:15px;
+flex-wrap:wrap;
+}
+
+.btn{
+padding:15px 35px;
+border:none;
+border-radius:50px;
+font-size:18px;
+cursor:pointer;
+transition:.3s;
+}
+
+.yes{
+background:#b48b4d;
+color:white;
+}
+
+.no{
+background:#d9d9d9;
+}
+
+.btn:hover{
+transform:scale(1.05);
+}
+
+.message{
+margin-top:25px;
+font-size:18px;
+font-weight:600;
+color:#4caf50;
+display:none;
+}
+
+.footer{
+padding:60px 20px;
+font-size:18px;
+}
+
+.editable{
+background:#fff8dc;
+padding:2px 6px;
+border-radius:4px;
+}
+
+</style>
+
+</head>
+<body>
+
+<section class="hero">
+
+<div class="names">
+Monica & Nombre del Novio
+</div>
+
+<p class="subtitle">
+Nos Casamos
+</p>
+
+<p class="date">
+15 de febrero de 2027
+</p>
+
+</section>
+
+<section class="section">
+
+<h2>Nuestro Gran Día</h2>
+
+<div class="countdown">
+
+<div class="box">
+<div class="number" id="days">00</div>
+<div class="label">DÍAS</div>
+</div>
+
+<div class="box">
+<div class="number" id="hours">00</div>
+<div class="label">HORAS</div>
+</div>
+
+<div class="box">
+<div class="number" id="minutes">00</div>
+<div class="label">MINUTOS</div>
+</div>
+
+<div class="box">
+<div class="number" id="seconds">00</div>
+<div class="label">SEGUNDOS</div>
+</div>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<div class="card">
+
+<h2>Detalles de la Ceremonia</h2>
+
+<p>
+💒 Iglesia:
+<span class="editable">
+NOMBRE DE LA IGLESIA
+</span>
+</p>
+
+<br>
+
+<p>
+🕓 Hora:
+<span class="editable">
+4:00 PM
+</span>
+</p>
+
+<br>
+
+<p>
+🎉 Recepción:
+<span class="editable">
+NOMBRE DEL SALÓN
+</span>
+</p>
+
+<br>
+
+<p>
+👔 Vestimenta:
+<span class="editable">
+Formal Elegante
+</span>
+</p>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<div class="card">
+
+<h2>RSVP</h2>
+
+<p>
+Tu presencia hará este día aún más especial.
+</p>
+
+<br>
+
+<p>
+Por favor confirma tu asistencia.
+</p>
+
+<div class="rsvp-buttons">
+
+<button class="btn yes" onclick="confirmar('Sí asistiré')">
+✓ Sí, asistiré
+</button>
+
+<button class="btn no" onclick="confirmar('No asistiré')">
+✕ No podré asistir
+</button>
+
+</div>
+
+<div id="respuesta" class="message"></div>
+
+</div>
+
+</section>
+
+<section class="footer">
+
+❤️ Gracias por formar parte de nuestra historia ❤️
+
+</section>
+
+<script>
+
+/* FECHA DE LA BODA */
+const weddingDate = new Date("February 15, 2027 16:00:00").getTime();
+
+setInterval(() => {
+
+const now = new Date().getTime();
+
+const distance = weddingDate - now;
+
+const days = Math.floor(distance/(1000*60*60*24));
+const hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+const minutes = Math.floor((distance%(1000*60*60))/(1000*60));
+const seconds = Math.floor((distance%(1000*60))/1000);
+
+document.getElementById("days").innerHTML=days;
+document.getElementById("hours").innerHTML=hours;
+document.getElementById("minutes").innerHTML=minutes;
+document.getElementById("seconds").innerHTML=seconds;
+
+},1000);
+
+function confirmar(opcion){
+
+let mensaje=document.getElementById("respuesta");
+
+mensaje.style.display="block";
+
+if(opcion==="Sí asistiré"){
+mensaje.innerHTML="✨ ¡Gracias! Tu asistencia ha sido registrada.";
+}else{
+mensaje.innerHTML="💕 Gracias por informarnos tu respuesta.";
+}
+
+/*
+AQUÍ MÁS ADELANTE
+SE CONECTARÁ CON GOOGLE SHEETS
+PARA GUARDAR AUTOMÁTICAMENTE
+LAS RESPUESTAS.
+*/
+
+}
+
+</script>
+
+</body>
+</html>
