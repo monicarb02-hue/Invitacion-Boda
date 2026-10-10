@@ -18,10 +18,17 @@ box-sizing:border-box;
 
 body{
 font-family:'Montserrat',sans-serif;
-background:#faf7f2;
+background:linear-gradient(
+180deg,
+#fdf6ec,
+#f7efe2,
+#f2e4d7
+);
 color:#4a4a4a;
 text-align:center;
+overflow-x:hidden;
 }
+
 
 .hero{
 min-height:100vh;
@@ -148,6 +155,68 @@ padding:2px 6px;
 border-radius:4px;
 }
 
+  .padres-card{
+
+max-width:900px;
+margin:40px auto;
+padding:40px;
+
+background:rgba(255,255,255,0.95);
+
+border-radius:25px;
+
+box-shadow:0 8px 25px rgba(0,0,0,.12);
+
+border:2px solid #d4c0a1;
+
+}
+
+.padres-card h2{
+
+color:#b48b4d;
+
+font-family:'Playfair Display',serif;
+
+margin-bottom:30px;
+
+}
+
+.padres-container{
+
+display:flex;
+
+justify-content:center;
+
+gap:60px;
+
+flex-wrap:wrap;
+
+}
+
+.familia{
+
+min-width:250px;
+
+}
+
+.familia h3{
+
+color:#b48b4d;
+
+font-family:'Playfair Display',serif;
+
+margin-bottom:15px;
+
+}
+
+.familia p{
+
+line-height:1.8;
+
+font-size:18px;
+
+}
+
 </style>
 
 </head>
@@ -156,15 +225,50 @@ border-radius:4px;
 <section class="hero">
 
 <div class="names">
-Monica & Nombre del Novio
+Mónica & Kenneth
+</div>
+<div class="padres-card">
+
+  <h2>Con la bendición de Dios y de nuestros padres</h2>
+
+<div class="padres-container">
+
+<div class="familia">
+<h3>Padres de la Novia</h3>
+
+<p>
+Francisco Rodríguez Salas<br>
+&amp;<br>
+Ana Victoria Bolaños Chaves
+</p>
+
 </div>
 
+<div class="familia">
+<h3>Padres del Novio</h3>
+
+<p>
+Axel Godínez<br>
+&amp<br>
+Karen Solano
+</p>
+  
+<p style="margin-bottom:30px;">
+Tenemos el honor de invitarles a compartir
+la alegría de nuestra unión en matrimonio.
+</p>
+  
+</div>
+
+</div>
+
+</div>
 <p class="subtitle">
 Nos Casamos
 </p>
 
 <p class="date">
-15 de febrero de 2027
+13 de febrero de 2027
 </p>
 
 </section>
@@ -208,7 +312,7 @@ Nos Casamos
 <p>
 💒 Iglesia:
 <span class="editable">
-NOMBRE DE LA IGLESIA
+Iglesia los Salescianos
 </span>
 </p>
 
@@ -217,7 +321,7 @@ NOMBRE DE LA IGLESIA
 <p>
 🕓 Hora:
 <span class="editable">
-4:00 PM
+2:00 PM
 </span>
 </p>
 
