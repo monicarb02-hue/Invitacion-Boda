@@ -216,7 +216,111 @@ line-height:1.8;
 font-size:18px;
 
 }
+.rsvp-card{
 
+max-width:650px;
+
+margin:auto;
+
+background:#f7f4ee;
+
+padding:40px;
+
+border-radius:25px;
+
+border:2px solid #d8c8a8;
+
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.rsvp-card h2{
+
+font-family:'Playfair Display',serif;
+
+color:#b48b4d;
+
+margin-bottom:30px;
+
+}
+
+.rsvp-card input{
+
+width:100%;
+
+padding:15px;
+
+border:1px solid #d8c8a8;
+
+border-radius:12px;
+
+margin-bottom:25px;
+
+font-size:16px;
+
+}
+
+.pregunta{
+
+margin-bottom:20px;
+
+font-size:18px;
+
+}
+
+.opcion-rsvp{
+
+background:#ebe7dd;
+
+padding:35px;
+
+margin-bottom:15px;
+
+border-radius:15px;
+
+cursor:pointer;
+
+transition:.3s;
+
+text-align:left;
+
+}
+
+.opcion-rsvp:hover{
+
+background:#ddd4c4;
+
+}
+
+.opcion-seleccionada{
+
+background:#d8c8a8;
+
+border:2px solid #b48b4d;
+
+}
+
+.btn-rsvp{
+
+margin-top:20px;
+
+width:100%;
+
+padding:15px;
+
+background:#c5b49c;
+
+border:none;
+
+border-radius:50px;
+
+font-size:20px;
+
+cursor:pointer;
+
+color:#6d5535;
+
+}
 </style>
 
 </head>
@@ -346,11 +450,46 @@ Formal Elegante
 
 <div class="card">
 
-<h2>RSVP</h2>
+<div class="rsvp-card">
 
-<p>
-Tu presencia hará este día aún más especial.
+<h2>Confirmación de Asistencia</h2>
+
+<input
+type="text"
+id="nombre"
+placeholder="Tu nombre">
+
+<p class="pregunta">
+¿Podrás acompañarnos en nuestro gran día?
 </p>
+
+<div
+class="opcion-rsvp"
+onclick="seleccionar(this,'Sí asistiré')">
+
+Sí, ¡ahí estaré!
+
+</div>
+
+<div
+class="opcion-rsvp"
+onclick="seleccionar(this,'No asistiré')">
+
+No podré asistir, pero los llevo en mi corazón
+
+</div>
+
+<button
+class="btn-rsvp"
+onclick="confirmar(seleccionActual)">
+
+RSVP
+
+</button>
+
+<div id="respuesta"></div>
+
+</div>
 
 <br>
 
@@ -378,14 +517,35 @@ Por favor confirma tu asistencia.
 
 <section class="footer">
 
-❤️ Gracias por formar parte de nuestra historia ❤️
+ ¡Gracias por formar parte de nuestra historia!
 
 </section>
 
 <script>
+let seleccionActual="";
 
+function seleccionar(elemento,opcion){
+
+document
+.querySelectorAll('.opcion-rsvp')
+.forEach(card=>{
+
+card.classList.remove(
+'opcion-seleccionada'
+);
+
+});
+
+elemento.classList.add(
+'opcion-seleccionada'
+);
+
+seleccionActual=opcion;
+
+}
+  
 /* FECHA DE LA BODA */
-const weddingDate = new Date("February 15, 2027 16:00:00").getTime();
+const weddingDate = new Date("February 13, 2027 14:00:00").getTime();
 
 setInterval(() => {
 
@@ -407,14 +567,55 @@ document.getElementById("seconds").innerHTML=seconds;
 
 function confirmar(opcion){
 
-let mensaje=document.getElementById("respuesta");
+const nombre =
+document.getElementById("nombre").value;
+
+if(nombre===""){
+
+alert(
+"Por favor escribe tu nombre"
+);
+
+return;
+
+}
+
+if(opcion===""){
+
+alert(
+"Selecciona una respuesta"
+);
+
+return;
+
+}
+
+let mensaje =
+document.getElementById("respuesta");
 
 mensaje.style.display="block";
 
+mensaje.style.marginTop="20px";
+
+mensaje.style.color="#b48b4d";
+
 if(opcion==="Sí asistiré"){
-mensaje.innerHTML="✨ ¡Gracias! Tu asistencia ha sido registrada.";
+
+mensaje.innerHTML=
+" Gracias " +
+nombre +
+". Tu asistencia ha sido registrada.";
+
 }else{
-mensaje.innerHTML="💕 Gracias por informarnos tu respuesta.";
+
+mensaje.innerHTML=
+" Gracias " +
+nombre +
+". Agradecemos tu respuesta.";
+
+}
+
+}
 }
 
 /*
