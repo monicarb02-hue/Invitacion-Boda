@@ -574,11 +574,70 @@ return;
 
 }
 
+function confirmar(opcion){
+
+const nombre =
+document.getElementById("nombre").value;
+
+if(nombre===""){
+
+alert("Por favor escribe tu nombre");
+return;
+
+}
+
 if(opcion===""){
 
+alert("Selecciona una respuesta");
+return;
+
+}
+
+fetch("https://script.google.com/macros/s/AKfycbz82Tu9_6obYoP0ULFHnyrHXYSnlr6JxdGqe2oSi0VSVG8yjujBEMDA1Vc0nNT3iYZdRg/exec",{
+
+method:"POST",
+
+body:JSON.stringify({
+
+nombre:nombre,
+
+respuesta:opcion
+
+})
+
+})
+
+.then(response => response.text())
+
+.then(() => {
+
+let mensaje =
+document.getElementById("respuesta");
+
+mensaje.style.display="block";
+
+mensaje.style.marginTop="20px";
+
+mensaje.style.color="#b48b4d";
+
+mensaje.innerHTML =
+"✨ Gracias " +
+nombre +
+". Tu respuesta ha sido registrada.";
+
+})
+
+.catch(error => {
+
 alert(
-"Selecciona una respuesta"
+"Hubo un problema al registrar la respuesta."
 );
+
+console.error(error);
+
+});
+
+}
 
 return;
 
