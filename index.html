@@ -306,9 +306,11 @@ margin-top:20px;
 
 width:100%;
 
-padding:15px;
+padding:18px;
 
-background:#c5b49c;
+background:#b48b4d;
+
+color:white;
 
 border:none;
 
@@ -316,9 +318,22 @@ border-radius:50px;
 
 font-size:20px;
 
+font-family:'Playfair Display',serif;
+
+letter-spacing:2px;
+
 cursor:pointer;
 
-color:#6d5535;
+transition:.3s;
+
+}
+  .btn-rsvp:hover{
+
+transform:translateY(-2px);
+
+background:#a57b35;
+
+}
 
 }
 </style>
@@ -497,17 +512,7 @@ RSVP
 Por favor confirma tu asistencia.
 </p>
 
-<div class="rsvp-buttons">
 
-<button class="btn yes" onclick="confirmar('Sí asistiré')">
-✓ Sí, asistiré
-</button>
-
-<button class="btn no" onclick="confirmar('No asistiré')">
-✕ No podré asistir
-</button>
-
-</div>
 
 <div id="respuesta" class="message"></div>
 
